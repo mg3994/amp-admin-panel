@@ -3,8 +3,10 @@ name: Deploy AMP Admin Panel to GitHub Pages
 on:
   push:
     branches:
-      - main
-      - master
+      - '**'
+  pull_request:
+    branches:
+      - '**'
   workflow_dispatch:
 
 permissions:
@@ -13,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
